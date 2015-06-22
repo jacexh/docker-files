@@ -1,4 +1,4 @@
-FROM jacexh/python:2.7.6
+FROM jacexh/python:2.7.10
 
 MAINTAINER Jace Xu <jace@xuh.me>
 ENV REFRESHED_AT 2015-06-22
@@ -18,18 +18,19 @@ ENV DEBIAN_FRONTEND noninteractive
 # set time zone
 # RUN echo "Asia/Shanghai" > /etc/timezone && dpkg-reconfigure -f noninteractive tzdata
 
-RUN apt-get -y update
+RUN apt-get -yqq update
 # RUN apt-get install -y wget curl
 # RUN apt-get install -y python python-dev
 # RUN wget https://bootstrap.pypa.io/get-pip.py -O - | python
 
 
 # 安装依赖
-RUN apt-get install -y libssl-dev libffi-dev libzmq-dev libevent-dev
-RUN pip install -U pyopenssl ndg-httpsclient pyasn1 requests simplejson xmlrunner paramiko locustio pyzmq mock redis pymongo==2.8
-RUN apt-get install -y python-matplotlib python-numpy
+RUN apt-get install -yqq libffi-dev libzmq-dev libevent-dev libfreetype6-dev libxft-dev
+RUN pip install -U requests simplejson xmlrunner paramiko locustio pyzmq mock redis pymongo==2.8
+RUN pip install -U matplotlib numpy
 RUN pip install -U selenium
 RUN wget -qO- https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.8-linux-x86_64.tar.bz2 | tar jxv -C /opt
 RUN ln -sf /opt/phantomjs-1.9.8-linux-x86_64/bin/phantomjs /usr/local/bin/phantomjs
 
 EXPOSE 8089
+CMD ["/bin/bash"]
