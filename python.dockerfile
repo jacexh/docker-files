@@ -1,7 +1,7 @@
 FROM ubuntu:14.04
 
 MAINTAINER Jace Xu <jace@xuh.me>
-ENV REFRESHED_AT 2015-06-22
+ENV REFRESHED_AT 2015-07-09
 ENV DEBIAN_FRONTEND noninteractive
 # FROM buildpack-deps:jessie
 
@@ -47,6 +47,6 @@ RUN set -x \
     && rm -rf /usr/src/python
 
 # install "virtualenv", since the vast majority of users of this image will want it
-RUN pip install --no-cache-dir virtualenv
+# RUN pip install --no-cache-dir virtualenv
 
 CMD ["python2"]
