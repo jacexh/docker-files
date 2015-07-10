@@ -1,7 +1,7 @@
 FROM jacexh/python:2.7.10
 
 MAINTAINER Jace Xu <jace@xuh.me>
-ENV REFRESHED_AT 2015-06-22
+ENV REFRESHED_AT 2015-07-09
 ENV DEBIAN_FRONTEND noninteractive
 
 # RUN echo "deb http://mirrors.163.com/ubuntu/ trusty main restricted universe multiverse" > /etc/apt/sources.list
@@ -26,9 +26,10 @@ RUN apt-get -yqq update
 
 # 安装依赖
 RUN apt-get install -yqq libffi-dev libzmq-dev libevent-dev libfreetype6-dev libxft-dev
-RUN pip install -U requests simplejson xmlrunner paramiko locustio pyzmq mock redis pymongo==2.8
-RUN pip install -U matplotlib numpy
-RUN pip install -U selenium
+RUN pip install --no-cache-dir -U requests simplejson xmlrunner paramiko locustio pyzmq mock redis pymongo==2.8
+RUN pip install --no-cache-dir -U matplotlib numpy
+RUN pip install --no-cache-dir -U SQLAlchemy
+RUN pip install --no-cache-dir -U selenium
 RUN wget -qO- https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.8-linux-x86_64.tar.bz2 | tar jxv -C /opt
 RUN ln -sf /opt/phantomjs-1.9.8-linux-x86_64/bin/phantomjs /usr/local/bin/phantomjs
 
