@@ -1,7 +1,7 @@
 FROM jacexh/python:2.7.10
 
 MAINTAINER Jace Xu <jace@xuh.me>
-ENV REFRESHED_AT 2015-07-09
+ENV REFRESHED_AT 2015-07-21
 ENV DEBIAN_FRONTEND noninteractive
 
 # RUN echo "deb http://mirrors.163.com/ubuntu/ trusty main restricted universe multiverse" > /etc/apt/sources.list
@@ -33,5 +33,7 @@ RUN pip install --no-cache-dir -U selenium
 RUN wget -qO- https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.8-linux-x86_64.tar.bz2 | tar jxv -C /opt
 RUN ln -sf /opt/phantomjs-1.9.8-linux-x86_64/bin/phantomjs /usr/local/bin/phantomjs
 
-EXPOSE 8089
-CMD ["/bin/bash"]
+RUN mkdir -p /opt/workspace
+WORKDIR /opt/workspace
+# EXPOSE 8089
+ENTRYPOINT ["python"]
