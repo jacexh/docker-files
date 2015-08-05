@@ -1,7 +1,7 @@
 FROM ubuntu:14.04
 
 MAINTAINER Jace Xu <jace@xuh.me>
-ENV REFRESHED_AT 2015-07-09
+ENV REFRESHED_AT 2015-08-05
 ENV DEBIAN_FRONTEND noninteractive
 # FROM buildpack-deps:jessie
 
