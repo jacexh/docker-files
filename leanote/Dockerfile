@@ -27,7 +27,7 @@ EXPOSE 9000
 COPY app.conf $GOPATH/src/github.com/leanote/leanote/conf/app.conf
 COPY start.sh /root/start.sh
 VOLUME ["$MONGO_DBPATH", "$MONGO_LOG"]
-ENTRYPOINT ["/bin/bash", "$HOME/start.sh"]
+ENTRYPOINT ["/bin/bash", "/root/start.sh"]
 
 # usage:
 # docker run --leanote -v <localdb>:/data/db -v <locallog>:/data/log -d jacexh/leanote:1.0.1
