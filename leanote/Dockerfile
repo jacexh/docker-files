@@ -21,6 +21,7 @@ RUN curl -O https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-$MONGO_VERSION
     && rm -f mongodb-linux-x86_64-$MONGO_VERSION.tgz \
     && rm -rf mongodb-linux-x86_64-$MONGO_VERSION
 RUN mkdir -p $MONGO_DBPATH
+RUN mkdir -p $MONGO_LOG
 
 EXPOSE 27017
 EXPOSE 9000
@@ -30,4 +31,4 @@ VOLUME ["$MONGO_DBPATH", "$MONGO_LOG"]
 ENTRYPOINT ["/bin/bash", "/root/start.sh"]
 
 # usage:
-# docker run --leanote -v <localdb>:/data/db -v <locallog>:/data/log -d jacexh/leanote:1.0.1
+# docker run --leanote -v <localdb>:/data/db -v <locallog>:/data/log -p 9000:9000 -d jacexh/leanote:1.0.1
