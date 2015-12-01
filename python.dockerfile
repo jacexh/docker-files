@@ -1,12 +1,12 @@
 FROM ubuntu:14.04
 
 MAINTAINER Jace Xu <jace@xuh.me>
-ENV REFRESHED_AT 2015-08-05
+ENV REFRESHED_AT 2015-12-01
 ENV DEBIAN_FRONTEND noninteractive
 # FROM buildpack-deps:jessie
 
 # set time zone
-RUN echo "Asia/Shanghai" > /etc/timezone && dpkg-reconfigure -f noninteractive tzdata
+# RUN echo "Asia/Shanghai" > /etc/timezone && dpkg-reconfigure -f noninteractive tzdata
 
 RUN apt-get -yqq update
 RUN apt-get -yqq install wget curl xz-utils build-essential zlib1g-dev
