@@ -15,13 +15,13 @@ ENV GPG_KEY C01E1CAD5EA2C4F0B8E3571504C367C218ADD4FF
 ENV PYTHON_VERSION 2.7.11
 
 RUN set -ex \
-    && buildDeps="wget curl xz-utils build-essential zlib1g-dev libssl-dev libc6-dev gcc g++ dpkg-dev libc-dev-bin" \
+    && buildDeps="wget curl xz-utils build-essential zlib1g-dev libssl-dev" \
     && echo "deb http://mirrors.163.com/ubuntu/ xenial main restricted universe multiverse" > /etc/apt/sources.list \
     && echo "deb http://mirrors.163.com/ubuntu/ xenial-security main restricted universe multiverse" >> /etc/apt/sources.list \
     && echo "deb http://mirrors.163.com/ubuntu/ xenial-updates main restricted universe multiverse" >> /etc/apt/sources.list \
     && echo "deb http://mirrors.163.com/ubuntu/ xenial-backports main restricted universe multiverse" >> /etc/apt/sources.list \
     && apt-get -y update \
-    && apt-get install -y  $buildDeps --no-install-recommends \
+    && apt-get install -y  $buildDeps \
     && rm -rf /var/lib/apt/lists/* \
     && curl -SL "https://www.python.org/ftp/python/${PYTHON_VERSION%%[a-z]*}/Python-$PYTHON_VERSION.tar.xz" -o python.tar.xz \
     && curl -SL "https://www.python.org/ftp/python/${PYTHON_VERSION%%[a-z]*}/Python-$PYTHON_VERSION.tar.xz.asc" -o python.tar.xz.asc \
