@@ -9,17 +9,17 @@ ENV TZ "Asia/Shanghai"
 RUN echo "http://mirrors.tuna.tsinghua.edu.cn/alpine/v$ALPINE_VER/main" > /etc/apk/repositories \
     && echo "http://mirrors.tuna.tsinghua.edu.cn/alpine/v$ALPINE_VER/community" >> /etc/apk/repositories \
     && apk update \
-    && apk add tzdata gcc libffi libzmq libevent libev libxft libjpeg libpng freetype-dev libxml2 libxslt git \
-    && git clone https://github.com/mysql/mysql-connector-python.git \
+    && apk add tzdata gcc libc-dev libffi libzmq libevent libev libxft libjpeg libpng freetype-dev libxml2 libxslt curl \
     && pip install --no-cache-dir -U setuptools pip elasticsearch pika numpy matplotlib selenium \
     requests simplejson xmlrunner paramiko pyzmq mock redis pymongo jsonpickle qrcode pillow lxml \
     python-json-logger nose lxml fake-factory sphinx \
     sphinx_rtd_theme locustio jupyter influxdb \
+    && curl -fSL "https://github.com/mysql/mysql-connector-python/archive/2.1.3.tar.gz" -o mysql.tar.gz \
+    && tar -zxvf mysql.tar.gz \
     && cd mysql-connector-python \
     && python setup.py install \
     && cd .. \
     && rm -rf mysql-connector-python \
-    && apk del git \
     && rm -rf /var/cache/apk/* \
     && ln -sf /usr/share/zoneinfo/$TZ /etc/localtime \
     && echo $TZ > /etc/localtime \
