@@ -18,12 +18,12 @@ WORKDIR /workspace
 ADD sources.list /etc/apt/
 
 RUN set -ex \
-    && buildDeps="build-essential zlib1g-dev libssl-dev libc6-dev dpkg-dev curl xz-utils gcc g++" \
+    && buildDeps="build-essential zlib1g-dev libssl-dev libc6-dev dpkg-dev curl xz-utils gcc g++ ca-certificates" \
     && apt-get -y update \
     && apt-get install -y  $buildDeps --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* \
-    && curl -SLk "https://www.python.org/ftp/python/${PYTHON_VERSION%%[a-z]*}/Python-$PYTHON_VERSION.tar.xz" -o python.tar.xz \
-    && curl -SLk "https://www.python.org/ftp/python/${PYTHON_VERSION%%[a-z]*}/Python-$PYTHON_VERSION.tar.xz.asc" -o python.tar.xz.asc \
+    && curl -fSL "https://www.python.org/ftp/python/${PYTHON_VERSION%%[a-z]*}/Python-$PYTHON_VERSION.tar.xz" -o python.tar.xz \
+    && curl -fSL "https://www.python.org/ftp/python/${PYTHON_VERSION%%[a-z]*}/Python-$PYTHON_VERSION.tar.xz.asc" -o python.tar.xz.asc \
     && export GNUPGHOME="$(mktemp -d)" \
     && gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$GPG_KEY" \
     && gpg --batch --verify python.tar.xz.asc python.tar.xz \
@@ -48,7 +48,7 @@ RUN set -ex \
     && rm -rf /usr/src/python ~/.cache \
     && apt-get purge -y --auto-remove $buildDeps \
     && ln -sf /usr/share/zoneinfo/$TZ /etc/localtime \
-    && echo $TZ > /etc/localtime \
+    && echo $TZ > /etc/timezone \
     && mkdir -p /workspace
 
 CMD ["python2"]
