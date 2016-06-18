@@ -16,10 +16,10 @@ ENV PYTHON_VERSION 2.7.11
 
 RUN set -ex \
     && buildDeps="wget curl xz-utils build-essential zlib1g-dev libssl-dev" \
-    && echo "deb http://mirrors.ustc.edu.cn/debian stable main contrib non-free" > /etc/apt/sources.list \
-    && echo "deb-src http://mirrors.ustc.edu.cn/debian stable main contrib non-free" >> /etc/apt/sources.list \
-    && echo "deb http://mirrors.ustc.edu.cn/debian stable-proposed-updates main contrib non-free" >> /etc/apt/sources.list \
-    && echo "deb-src http://mirrors.ustc.edu.cn/debian stable-proposed-updates main contrib non-free" >> /etc/apt/sources.list \
+    && echo "deb http://mirrors.163.com/ubuntu/ xenial main restricted universe multiverse" > /etc/apt/sources.list \
+    && echo "deb http://mirrors.163.com/ubuntu/ xenial-security main restricted universe multiverse" >> /etc/apt/sources.list \
+    && echo "deb http://mirrors.163.com/ubuntu/ xenial-updates main restricted universe multiverse" >> /etc/apt/sources.list \
+    && echo "deb http://mirrors.163.com/ubuntu/ xenial-backports main restricted universe multiverse" >> /etc/apt/sources.list \
     && apt-get -y update \
     && apt-get install -y  $buildDeps --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* \
