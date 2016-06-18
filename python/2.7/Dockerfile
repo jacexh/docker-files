@@ -13,15 +13,14 @@ ENV LANG C.UTF-8
 ENV GPG_KEY C01E1CAD5EA2C4F0B8E3571504C367C218ADD4FF
 
 ENV PYTHON_VERSION 2.7.11
+ENV TZ Asia/Shanghai
+WORKDIR /workspace
+ADD sources.list /etc/apt/
 
 RUN set -ex \
-    && buildDeps="wget curl xz-utils build-essential zlib1g-dev libssl-dev" \
-    && echo "deb http://mirrors.163.com/ubuntu/ xenial main restricted universe multiverse" > /etc/apt/sources.list \
-    && echo "deb http://mirrors.163.com/ubuntu/ xenial-security main restricted universe multiverse" >> /etc/apt/sources.list \
-    && echo "deb http://mirrors.163.com/ubuntu/ xenial-updates main restricted universe multiverse" >> /etc/apt/sources.list \
-    && echo "deb http://mirrors.163.com/ubuntu/ xenial-backports main restricted universe multiverse" >> /etc/apt/sources.list \
+    && buildDeps="build-essential zlib1g-dev libssl-dev libc6-dev dpkg-dev curl xz-utils gcc g++" \
     && apt-get -y update \
-    && apt-get install -y  $buildDeps \
+    && apt-get install -y  $buildDeps --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* \
     && curl -SL "https://www.python.org/ftp/python/${PYTHON_VERSION%%[a-z]*}/Python-$PYTHON_VERSION.tar.xz" -o python.tar.xz \
     && curl -SL "https://www.python.org/ftp/python/${PYTHON_VERSION%%[a-z]*}/Python-$PYTHON_VERSION.tar.xz.asc" -o python.tar.xz.asc \
@@ -47,6 +46,9 @@ RUN set -ex \
             \( -type f -a -name '*.pyc' -o -name '*.pyo' \) \
         \) -exec rm -rf '{}' + \
     && rm -rf /usr/src/python ~/.cache \
-    && apt-get purge -y --auto-remove $buildDeps
+    && apt-get purge -y --auto-remove $buildDeps \
+    && ln -sf /usr/share/zoneinfo/$TZ /etc/localtime \
+    && echo $TZ > /etc/localtime \
+    && mkdir -p /workspace
 
 CMD ["python2"]
