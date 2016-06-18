@@ -6,8 +6,8 @@ ENV ALPINE_VER 3.4
 ENV WORKSPACE /workspace
 ENV TZ "Asia/Shanghai"
 
-RUN echo 'http://mirrors.tuna.tsinghua.edu.cn/alpine/v$ALPINE_VER/main' > /etc/apk/repositories \
-    && echo 'http://mirrors.tuna.tsinghua.edu.cn/alpine/v$ALPINE_VER/community' >> /etc/apk/repositories \
+RUN echo "http://mirrors.tuna.tsinghua.edu.cn/alpine/v$ALPINE_VER/main" > /etc/apk/repositories \
+    && echo "http://mirrors.tuna.tsinghua.edu.cn/alpine/v$ALPINE_VER/community" >> /etc/apk/repositories \
     && apk update \
     && apk add tzdata libffi libzmq libevent libev libxft libjpeg libpng freetype-dev libxml2 libxslt git \
     && git clone https://github.com/mysql/mysql-connector-python.git \
