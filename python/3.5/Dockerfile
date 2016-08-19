@@ -10,7 +10,8 @@ ENV LANG C.UTF-8
 # gpg: key F73C700D: public key "Larry Hastings <larry@hastings.org>" imported
 ENV GPG_KEY 97FC712E4C024BBEA48A61ED3A5CA953F73C700D
 
-ENV PYTHON_VERSION 3.5.1
+ENV PYTHON_VERSION 3.5.2
+ENV REFRESH_AT 2016-08-20
 ENV TZ Asia/Shanghai
 WORKDIR /workspace
 ADD sources.list /etc/apt/

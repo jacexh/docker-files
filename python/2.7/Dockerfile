@@ -12,7 +12,8 @@ ENV LANG C.UTF-8
 # gpg: key 18ADD4FF: public key "Benjamin Peterson <benjamin@python.org>" imported
 ENV GPG_KEY C01E1CAD5EA2C4F0B8E3571504C367C218ADD4FF
 
-ENV PYTHON_VERSION 2.7.11
+ENV PYTHON_VERSION 2.7.12
+ENV REFRESH_AT 2016-08-20
 ENV TZ Asia/Shanghai
 WORKDIR /workspace
 ADD sources.list /etc/apt/
