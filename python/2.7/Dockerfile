@@ -48,6 +48,7 @@ RUN set -ex \
         \) -exec rm -rf '{}' + \
     && rm -rf /usr/src/python ~/.cache \
     && apt-get purge -y --auto-remove $buildDeps \
+    && && rm -rf /var/lib/apt/lists/* \
     && ln -sf /usr/share/zoneinfo/$TZ /etc/localtime \
     && echo $TZ > /etc/timezone \
     && mkdir -p /workspace
