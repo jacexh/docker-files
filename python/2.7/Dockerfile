@@ -13,7 +13,7 @@ ENV PYTHON_VERSION 2.7.12
 
 RUN set -x \
     && apt-get -yqq update \
-    && apt-get -yqq install --no-install-recommends wget curl xz-utils build-essential zlib1g-dev libssl-dev \
+    && apt-get -yqq install --no-install-recommends wget curl ca-certificates xz-utils build-essential zlib1g-dev libssl-dev \
     && apt-get purge -yqq python.* \
     && gpg --keyserver ha.pool.sks-keyservers.net --recv-keys C01E1CAD5EA2C4F0B8E3571504C367C218ADD4FF \
     && mkdir -p /usr/src/python \
@@ -34,7 +34,7 @@ RUN set -x \
         -o \( -type f -a -name '*.pyc' -o -name '*.pyo' \) \
         -exec rm -rf '{}' + \
     && rm -rf /usr/src/python \
-    && apt-get purge -y --auto-remove wget curl \
+    && apt-get purge -y --auto-remove wget curl ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
 CMD ["python2"]
