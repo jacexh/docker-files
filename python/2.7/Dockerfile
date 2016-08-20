@@ -3,7 +3,7 @@ FROM ubuntu:16.04
 MAINTAINER jacexh <jace@xuh.me>
 ENV DEBIAN_FRONTEND noninteractive
 
-ADD ADD sources.list /etc/apt/
+ADD sources.list /etc/apt/
 WORKDIR /workspace
 
 # http://bugs.python.org/issue19846
