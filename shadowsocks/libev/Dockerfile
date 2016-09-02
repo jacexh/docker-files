@@ -1,6 +1,6 @@
 FROM alpine:3.4
 
-ENV SS_VER 2.4.8
+ENV SS_VER 2.5.0
 
 RUN set -e \
     && apk update \
